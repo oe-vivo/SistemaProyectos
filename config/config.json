@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "backenduser",
+    "password": "superpassword",
+    "database": "meta2_2",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "backenduser",
+    "password": "superpassword",
+    "database": "meta2_2",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "backenduser",
+    "password": "superpassword",
+    "database": "meta2_2",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
