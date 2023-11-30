@@ -13,7 +13,7 @@ exports.getAll = async (req, res) => {
 // Obtener donador por RFC
 exports.getByRfc = async (req, res) => {
     try {
-        const donador = await Donador.findOne({ where: { rfc: req.params.rfc }});
+        const donador = await Donador.findOne({ where: { id: req.params.id }});
         if (donador) {
             res.json(donador);
         } else {
@@ -38,10 +38,10 @@ exports.add = async (req, res) => {
 exports.update = async (req, res) => {
     try {
         const updated = await Donador.update(req.body, {
-            where: { rfc: req.params.rfc }
+            where: { id: req.params.id }
         });
         if (updated) {
-            const updatedDonador = await Donador.findOne({ where: { rfc: req.params.rfc }});
+            const updatedDonador = await Donador.findByPk(req.params.id);
             res.status(200).json(updatedDonador);
         } else {
             res.status(404).send('Donador no encontrado');
@@ -55,7 +55,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     try {
         const deleted = await Donador.destroy({
-            where: { rfc: req.params.rfc }
+            where: { id: req.params.id }
         });
         if (deleted) {
             res.status(200).send('Donador eliminado');

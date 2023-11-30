@@ -12,9 +12,9 @@ router.get("/:rfc", donadoresController.getByRfc);
 router.post("/", donadoresController.add);
 
 // Actualizar un donador existente
-router.put("/:rfc", donadoresController.update);
+router.put("/:id", donadoresController.update);
 
 // Eliminar un donador
-router.delete("/:rfc", donadoresController.delete);
+router.delete("/:id", donadoresController.delete);
 
 module.exports = router;

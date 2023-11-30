@@ -38,10 +38,10 @@ exports.add = async (req, res) => {
 exports.update = async (req, res) => {
     try {
         const updated = await Donatario.update(req.body, {
-            where: { rfc: req.params.rfc }
+            where: { id: req.params.id }
         });
         if (updated) {
-            const updatedDonatario = await Donatario.findOne({ where: { rfc: req.params.rfc }});
+            const updatedDonatario = await Donatario.findByPk(req.params.id);
             res.status(200).json(updatedDonatario);
         } else {
             res.status(404).send('Donatario no encontrado');
@@ -55,7 +55,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     try {
         const deleted = await Donatario.destroy({
-            where: { rfc: req.params.rfc }
+            where: { id: req.params.id }
         });
         if (deleted) {
             res.status(200).send('Donatario eliminado');
