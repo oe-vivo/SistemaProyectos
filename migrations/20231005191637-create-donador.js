@@ -1,8 +1,8 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Donadors', {
+    await queryInterface.createTable('donadors', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -19,6 +19,15 @@ module.exports = {
         type: Sequelize.INTEGER,
         unique: true
       },
+      proyectoId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'proyectos',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -30,6 +39,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Donadors');
+    await queryInterface.dropTable('donadors');
   }
 };

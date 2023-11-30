@@ -4,8 +4,12 @@ const fs=require("fs");
 const https= require("https");
 const proyectosRouter = require("./routes/proyectos");
 const donadoresRouter = require("./routes/donadores");
+const donatoriosRouter = require("./routes/donatorio");
+const usuariosRouter = require("./routes/usuarios"); // Agrega esta línea
+
 process.env.port = 4001;
 const app=express();
+app.use(express.json());
 const llavePrivada = fs.readFileSync("private.key");
 const certificado = fs.readFileSync("certificate.crt");
 const credenciales = {
@@ -15,10 +19,11 @@ const credenciales = {
 };
 const httpsServer = https.createServer(credenciales, app);
 app.use(cors());
-app.use(express.json());
 
 app.use("/proyectos",proyectosRouter);
 app.use("/donadores",donadoresRouter);
+app.use("/donatarios",donatoriosRouter);
+app.use("/usuarios", usuariosRouter);
 
 httpsServer.listen(process.env.port, () => {
     console.log('Servidor https escuchando por el puerto:', process.env.port);

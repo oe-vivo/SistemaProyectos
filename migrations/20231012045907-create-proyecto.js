@@ -1,5 +1,5 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Proyectos', {
@@ -16,13 +16,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       imagen: {
-        type: Sequelize.STRING,
-        defaultValue: null // Cambiar "NULL" a null
-      },
-      donatorio: {
-        type: Sequelize.STRING
-      },
-      donadores: {
         type: Sequelize.STRING
       },
       createdAt: {
