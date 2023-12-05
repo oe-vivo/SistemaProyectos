@@ -2,6 +2,8 @@ const cors = require("cors");
 const express = require ("express");
 const fs=require("fs");
 const https= require("https");
+const authRoutes = require('./routes/authRoutes');
+require('dotenv').config();
 const proyectosRouter = require("./routes/proyectos");
 const donadoresRouter = require("./routes/donadores");
 const donatoriosRouter = require("./routes/donatorio");
@@ -24,7 +26,7 @@ app.use("/proyectos",proyectosRouter);
 app.use("/donadores",donadoresRouter);
 app.use("/donatarios",donatoriosRouter);
 app.use("/usuarios", usuariosRouter);
-
+app.use("/api/auth",authRoutes);
 httpsServer.listen(process.env.port, () => {
     console.log('Servidor https escuchando por el puerto:', process.env.port);
 }).on('error', err => {
